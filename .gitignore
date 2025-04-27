@@ -10,5 +10,7 @@ wheels/
 .venv
 
 
-raw_data/
+# raw_data/
 bible.db
+
+.env

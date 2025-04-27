@@ -8,7 +8,10 @@ engine = create_engine(DATABASE_URL)
 
 async def get_session():
     with Session(engine) as session:
-        yield session
+        try:
+            yield session
+        finally:
+            session.close()
 
 
 SessionDep = Annotated[Session, Depends(get_session)]
