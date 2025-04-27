@@ -1,11 +1,12 @@
-from sqlmodel import create_engine, SQLModel, Session
+from sqlmodel import Session
 import json
 from domain.bible import Bible
 from domain.book import Book
 from domain.verse import Verse
+from database.database import engine, create_db_and_tables
 
-engine = create_engine("sqlite:///bible.db")
-SQLModel.metadata.create_all(engine)
+# Create tables if they don't exist
+create_db_and_tables()
 
 with Session(engine) as session:
     biblies = {

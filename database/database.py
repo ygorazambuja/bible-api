@@ -1,9 +1,15 @@
 from sqlmodel import Session, SQLModel, create_engine
 from fastapi import Depends
 from typing import Annotated
+import os
 
-DATABASE_URL = "sqlite:///bible.db"
-engine = create_engine(DATABASE_URL)
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:postgres@localhost:5432/bibledb")
+
+connect_args = {}
+if DATABASE_URL.startswith("sqlite"):
+    connect_args = {"check_same_thread": False}
+
+engine = create_engine(DATABASE_URL, connect_args=connect_args)
 
 
 async def get_session():

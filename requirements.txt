@@ -1,0 +1,5 @@
+fastapi[standard]
+sqlmodel>=0.0.24
+scalar-fastapi>=1.0.3
+psycopg2-binary>=2.9.9  # PostgreSQL driver 
+openai>=1.76.0

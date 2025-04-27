@@ -5,7 +5,7 @@ from ..domain.verse import Verse
 from typing import List, Optional
 from http import HTTPStatus
 from ..database.database import SessionDep
-from ..services.bibles import get_bible_by_abbrev
+from ..services.bibles import get_bible_by_abbrev, get_bibles
 from ..services.books import get_book_by_abbrev
 from ..services.books import get_books_by_bible_abbrev
 from ..services.verses import get_verses_by_book_abbrev, get_verses_by_range
@@ -14,7 +14,7 @@ router = APIRouter()
 
 
 @router.get("", response_model=List[Bible])
-async def get_bibles(db: SessionDep):
+async def get_bibles_router(db: SessionDep):
     bibles = get_bibles(db)
     return bibles
 

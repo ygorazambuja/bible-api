@@ -12,3 +12,10 @@ def get_bible_by_abbrev(db: SessionDep, bible_abbrev: str) -> Bible | None:
         raise Exception(f"Bible with abbreviation {bible_abbrev} not found")
 
     return bible
+
+
+def get_bibles(db: SessionDep):
+    bibles = db.exec(select(Bible)).all()
+
+    return bibles
+
