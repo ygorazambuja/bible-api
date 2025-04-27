@@ -3,7 +3,7 @@ FROM ghcr.io/astral-sh/uv:latest
 WORKDIR /code
 
 # Install PostgreSQL client
-RUN apt-get update && apt-get install -y postgresql-client
+# RUN apt-get update && apt-get install -y postgresql-client
 
 COPY ./requirements.txt /code/requirements.txt
 
