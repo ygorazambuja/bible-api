@@ -5,6 +5,9 @@ router = APIRouter()
 
 @router.post("")
 async def ai(prompt: str):
-    stream = get_ai_response(prompt)
-    return StreamingResponse(stream, media_type="text/event-stream")
+    try:
+        stream = get_ai_response(prompt)
+        return StreamingResponse(stream, media_type="text/event-stream")
+    except Exception as e:
+        return {"error": str(e)}
 
