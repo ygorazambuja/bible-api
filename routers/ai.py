@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from ..services.ai import get_ai_response
 from fastapi.responses import StreamingResponse
 router = APIRouter()
@@ -9,5 +9,5 @@ async def ai(prompt: str):
         stream = get_ai_response(prompt)
         return StreamingResponse(stream, media_type="text/event-stream")
     except Exception as e:
-        return {"error": str(e)}
+        raise HTTPException(status_code=500, detail=str(e))
 
